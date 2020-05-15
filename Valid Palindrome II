@@ -1,0 +1,43 @@
+Prob: https://leetcode.com/problems/valid-palindrome-ii/
+
+Also solve : https://leetcode.com/problems/valid-palindrome/
+
+________________________________________________________________________________________________________________________________
+Explanation:
+ To generalize this to more than one deletes, we can simply replace the flag "deleted" to be a counter initialized to how many
+ characters we are allowed to delete and stop allowing for recursive calls when it reaches 0.
+ 
+ we every time check the index from start and from the end,if they are same we increment the starting index and decrease last index , 
+ if they are different we need to eliminate either of them ,so in one recursive call we increment starting index ,and in other recursive
+ call we decrement ending index ,and decrement c which is 1 to 0 so now we can't remove any index .
+
+
+
+Note: This question can be solved by min # of del to make required to make a string palindrome but it will be O(n^2) algo and will give TLE.
+We need O(n) Sol.
+
+________________________________________________________________________________________________________________________________
+Code:
+
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+    
+        def check(s,i,j,deleted):
+
+            while i <= j:
+                if s[i] == s[j]: # if 1st and last matches move on
+                    i += 1
+                    j -= 1
+                else:
+                    if deleted is True:  # we already made one deletion
+                        return False   # cannot be made palindrome by 1 deletion
+
+                    else:
+
+                        return check(s,i+1,j,True) or check(s,i,j-1,True)  # check for either of the two cases.
+            return True  # if all are same
+            
+        i = 0
+        j = len(s)-1
+
+        return check(s,i,j,False)
