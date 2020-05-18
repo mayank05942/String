@@ -1,0 +1,25 @@
+Prob: https://leetcode.com/problems/find-all-anagrams-in-a-string/
+_______________________________________________________________________________________________________________________________________
+
+Explanation: We have to use the sliding window technique.
+1- Make dict of p 
+2- starting from index 0 make a fix window of size len(p) and iterate over the arrau
+3- Make dict of the window and compare it with p
+4-If found equal store the starting idx (i) inside a list.
+
+
+_______________________________________________________________________________________________________________________________________
+Code:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+       
+        from collections import Counter
+        d1 = Counter(p)
+        lis = []
+        for i in range(len(s)-len(p)+1):
+            window = s[i:len(p)+i]
+            if Counter(window) == d1:
+                lis.append(i)
+
+        return lis
