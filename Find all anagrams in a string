@@ -1,6 +1,8 @@
 Prob: https://leetcode.com/problems/find-all-anagrams-in-a-string/
 
 Much similar question: https://leetcode.com/problems/permutation-in-string/
+
+All anagrams are permutations but not all permuations are anagram.
 _______________________________________________________________________________________________________________________________________
 
 Explanation: We have to use the sliding window technique.
