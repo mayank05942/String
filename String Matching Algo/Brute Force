@@ -1,0 +1,22 @@
+Prob: https://leetcode.com/problems/implement-strstr/
+
+
+___________________________________________________________________________________________________________________________
+class Solution:
+
+    def strStr(self, haystack: str, needle: str) -> int:
+    
+        if not needle and haystack:          # cornor cases
+            return 0
+        if not needle and not haystack:
+            return 0
+        
+        
+        
+        window = len(needle)  # length of the string to match
+        
+        for i in range(len(haystack)):
+            #print(haystack[i:i+window])
+            if haystack[i:i+window] == needle:    # using string slicing
+                return i
+        return -1
