@@ -1,0 +1,49 @@
+Prob: https://leetcode.com/problems/add-strings/
+________________________________________________________________________________________________________________________________________________
+
+Explanation:
+
+Use ord() method which maps strings to their ASCII representation like "0" is mapped to 48 hence we can convert each char into int by = ord(s1[i]) - ord("0")
+
+Then we have to take care of the carry part.
+Sum = add % 10
+carry = add // 10
+
+Video: https://www.youtube.com/watch?v=PlCOTfHB54g
+-------
+
+________________________________________________________________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def addStrings(self, num1: str, num2: str) -> str:
+        i = len(num1)-1
+        j = len(num2)-1
+        
+        res = []
+        carry = 0
+        
+        while i >= 0 or j >= 0:
+            if i >= 0:
+                x = ord(num1[i]) - ord("0")
+            else:
+                x = 0
+            
+            if j >= 0:
+                y = ord(num2[j]) - ord("0")
+            else:
+                y = 0
+            
+            add = x + y + carry
+            
+            res.append(str(add%10))
+            
+            carry = add // 10
+            i -= 1
+            j -= 1
+        if carry:
+            res.append(str(carry))
+        
+        return "".join(res)[::-1]
+        
