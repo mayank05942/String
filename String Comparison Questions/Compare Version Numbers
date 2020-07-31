@@ -1,0 +1,34 @@
+Prob: https://leetcode.com/problems/compare-version-numbers/
+____________________________________________________________________________________________________________________
+
+Explanation:
+
+First split at "." then append 0's at the end to make two numbers equal then do the comparsion.
+
+_____________________________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def compareVersion(self, version1: str, version2: str) -> int:
+    
+        v1 = [int(x) for x in version1.split('.')]
+        v2 = [int(x) for x in version2.split('.')]
+        print(v1,v2)
+        
+        length = max(len(v1),len(v2))
+        
+        while len(v1) < length:
+            v1.append(0)
+            
+        while len(v2) < length:
+            v2.append(0)
+            
+        for i,j in zip(v1,v2):
+            if i == j:
+                continue
+            if i  > j:
+                return 1
+            else:
+                return -1
+        return 0
